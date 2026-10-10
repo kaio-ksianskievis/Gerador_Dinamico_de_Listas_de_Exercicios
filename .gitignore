@@ -1,0 +1,19 @@
+
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Ficheiros de Log gerados pelo Spring Boot
+*.log
+logs/
+
+# Ficheiros ocultos do Sistema Operativo 
+.DS_Store
+Thumbs.db
