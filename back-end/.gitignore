@@ -6,7 +6,7 @@
 !**/src/test/**/target/
 
 # IntelliJ IDEA
-.idea/
+../.idea/
 *.iml
 *.iws
 
@@ -14,6 +14,6 @@
 *.log
 logs/
 
-# Ficheiros ocultos do Sistema Operativo 
+# Ficheiros ocultos do Sistema Operativo
 .DS_Store
 Thumbs.db
