@@ -2,7 +2,6 @@ package ksianskievis.kaio.gerador.listas.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.UUID;
 
 @Entity
@@ -18,22 +17,22 @@ public class ModelQuestao {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
-    private  String texto;
+    // columnDefinition = "TEXT" garante que equações longas em LaTeX cabem no banco
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String texto;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String alternativaA;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String alternativaB;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String alternativaC;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String alternativaD;
 
     @Column(nullable = false)
-    private  String alternativas_a;
-
-    @Column(nullable = false)
-    private  String alternativas_b;
-
-    @Column(nullable = false)
-    private  String alternativas_c;
-
-    @Column(nullable = false)
-    private  String alternativas_d;
-
-    @Column(nullable = false)
-    private  String alternativa_correta;
-
+    private String alternativaCorreta;
 }

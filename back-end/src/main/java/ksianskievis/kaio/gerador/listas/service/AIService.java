@@ -9,19 +9,22 @@ public class AIService {
 
     private final ChatClient chatClient;
 
-    public AIService(ChatClient.Builder chatBuilder){
+    public AIService(ChatClient.Builder chatBuilder) {
         this.chatClient = chatBuilder.build();
     }
 
-    public QuestaoDTO gerarQuestaoAI(){
+    // Agora o método recebe o assunto dinamicamente
+    public QuestaoDTO gerarQuestaoAI(String assunto) {
+
         String instrucaoSistema = """
             Você é um professor universitário de Cálculo B.
-            Gere uma questão de múltipla escolha.
+            Gere uma questão de múltipla escolha inédita.
+            
             Regras obrigatórias:
             1. Formate a matemática estritamente em LaTeX.
             2. Use DUPLA barra invertida para todos os comandos LaTeX (exemplo: \\\\lim, \\\\frac, \\\\int).
             3. Retorne APENAS um objeto JSON e rigorosamente mais nada.
-            4. Não foque toda vez em um conteúdo apena
+            4. Garanta que a questão tenha um nível de dificuldade intermediário.
             
             O formato exato do JSON deve ser:
             {
@@ -33,11 +36,12 @@ public class AIService {
               "alternativaCorreta": "..."
             }
             """;
+
         return this.chatClient.prompt()
                 .system(instrucaoSistema)
-                .user("Gere uma questão sobre integrais definidas ou derivadas parciais.")
+                // O assunto escolhido é injetado diretamente no prompt do utilizador
+                .user("Gere uma questão sobre o seguinte tema: " + assunto)
                 .call()
                 .entity(QuestaoDTO.class);
     }
-
 }
